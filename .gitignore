@@ -1,0 +1,26 @@
+# Application
+/node_modules
+/storage/*.key
+npm-debug.log
+yarn-error.log
+.env
+/vendor
+package-lock.json
+
+# Vagrant
+/.vagrant
+
+# Homestead
+Homestead.yaml
+Homestead.json
+
+# Framework
+/public/mix-manifest.json
+/public/js/
+/public/css/
+/public/hot
+/public/storage
+/public/mix.js
+
+# IDE Projects
+/.idea
