@@ -7,13 +7,6 @@ yarn-error.log
 /vendor
 package-lock.json
 
-# Vagrant
-/.vagrant
-
-# Homestead
-Homestead.yaml
-Homestead.json
-
 # Framework
 /public/mix-manifest.json
 /public/js/
@@ -21,6 +14,7 @@ Homestead.json
 /public/hot
 /public/storage
 /public/mix.js
+/public/images/
 
 # IDE-Helper package files
 .phpstorm.meta.php
