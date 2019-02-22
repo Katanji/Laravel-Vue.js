@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Http\Requests\UserRequest;
+use App\Jobs\UpdateUserExperience;
 use App\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
@@ -17,14 +18,17 @@ use Intervention\Image\Facades\Image;
 class UserController extends Controller
 {
     /**
-     * @param $user_id
-     * @return void
+     * @return int
      */
-    public function experience($user_id)
+    public function getExperience(): int
     {
-        $user = User::find($user_id);
+        $userExperience = User::find(1)->experience;
 
-        return ;
+        UpdateUserExperienceJob::dispatch('');
+
+//        \Artisan::call('update:userexperience');
+
+        return $userExperience;
     }
 
     /**
@@ -42,6 +46,15 @@ class UserController extends Controller
     public function index(): Collection
     {
         return User::with('articles')->get();
+    }
+
+    /**
+     * @param User $user
+     * @return User
+     */
+    public function show(User $user): User
+    {
+        return $user;
     }
 
     /**

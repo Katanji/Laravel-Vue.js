@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ * @package App
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -54,5 +58,13 @@ class User extends Authenticatable
     public static function getArticles(User $user): Collection
     {
         return collect($user->articles);
+    }
+
+    /**
+     * @param User $user
+     */
+    public static function setUserExperience(User $user)
+    {
+        $user->update(['experience' => rand()]);
     }
 }

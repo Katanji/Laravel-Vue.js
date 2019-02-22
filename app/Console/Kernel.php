@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,19 +15,24 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\UpdateUserExperienceCommand::class,
     ];
 
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $secondInterval = 3;
+
+        $totalJobs = 60 / $secondInterval;
+
+        for ($i = 0; $i < $totalJobs; $i++) {
+            $schedule->command('update:userexperience', [ '--delay'=> $secondInterval ])->everyMinute();
+        }
     }
 
     /**
@@ -35,7 +42,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

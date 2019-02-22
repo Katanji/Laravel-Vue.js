@@ -10,5 +10,5 @@ Route::get('articles/{article_id}/users/{user}', 'ArticleController@isAuthor');
 Route::get('users', 'UserController@index');
 Route::post('users', 'UserController@store')->name('user.store');
 Route::get('users/{user}', 'UserController@show');
-Route::get('users/{user_id}/experience', 'UserController@experience');
+Route::get('users/1/experience', 'UserController@getExperience');
 Route::get('users/{user}/articles', 'ArticleController@getUserArticles');
