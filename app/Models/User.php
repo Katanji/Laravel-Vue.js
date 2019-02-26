@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User
+ * @property int experience
  * @package App
  */
 class User extends Authenticatable

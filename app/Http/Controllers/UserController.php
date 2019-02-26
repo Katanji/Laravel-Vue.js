@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Http\Requests\UserRequest;
-use App\Jobs\UpdateUserExperience;
+use App\Jobs\UpdateUserExperienceJob;
 use App\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
@@ -18,17 +18,15 @@ use Intervention\Image\Facades\Image;
 class UserController extends Controller
 {
     /**
+     * @param User $user
+     * @param bool $repeatedRequest
      * @return int
      */
-    public function getExperience(): int
+    public function getExperience(User $user, $repeatedRequest = false): int
     {
-        $userExperience = User::find(1)->experience;
+        $repeatedRequest ?: UpdateUserExperienceJob::dispatch($user);
 
-        UpdateUserExperienceJob::dispatch('');
-
-//        \Artisan::call('update:userexperience');
-
-        return $userExperience;
+        return $user->experience;
     }
 
     /**

@@ -37,6 +37,9 @@ class UpdateUserExperienceJob implements ShouldQueue
      */
     public function handle()
     {
-        User::find(1)->update(['experience' => rand()]);
+        for ($i = 3; $i <= 90; $i += 3) {
+            sleep(3);
+            $this->user->update(['experience' => rand()]);
+        }
     }
 }

@@ -167,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Barryvdh\Queue\AsyncServiceProvider::class,
 
         /*
          * Application Service Providers...

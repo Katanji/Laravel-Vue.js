@@ -6,12 +6,15 @@ namespace App;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Support\Collection;
-use phpDocumentor\Reflection\Types\Boolean;
+use Illuminate\Database\Eloquent\Model;
 
-class Article extends Authenticatable
+/**
+ * Class Article
+ * @package App
+ */
+class Article extends Model
 {
     use Notifiable, SoftDeletes;
 
