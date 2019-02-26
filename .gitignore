@@ -15,6 +15,7 @@ package-lock.json
 /public/storage
 /public/mix.js
 /public/images/
+/public/fonts/
 
 # IDE-Helper package files
 .phpstorm.meta.php
