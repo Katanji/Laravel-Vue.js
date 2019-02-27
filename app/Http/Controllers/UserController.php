@@ -7,7 +7,7 @@ use App\Article;
 use App\Http\Requests\UserRequest;
 use App\Jobs\UpdateUserExperienceJob;
 use App\User;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Intervention\Image\Facades\Image;
 
@@ -18,15 +18,15 @@ use Intervention\Image\Facades\Image;
 class UserController extends Controller
 {
     /**
-     * @param User $user
-     * @param bool $repeatedRequest
-     * @return int
+     * @return array
      */
-    public function getExperience(User $user, $repeatedRequest = false): int
+    public function getExperience(): array
     {
-        $repeatedRequest ?: UpdateUserExperienceJob::dispatch($user);
+        $user = User::find(request()->get('user_id'));
 
-        return $user->experience;
+        request()->get('repeatRequest') === 'true' ?: UpdateUserExperienceJob::dispatch($user);
+
+        return ['experience' => $user->experience];
     }
 
     /**
@@ -58,9 +58,9 @@ class UserController extends Controller
     /**
      * @param UserRequest $request
      *
-     * @return RedirectResponse
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function store(UserRequest $request)
+    public function store(UserRequest $request): View
     {
         $avatar = time() . '.' . $request->image->getClientOriginalExtension();
         $location = public_path('images/' . $avatar);
@@ -71,6 +71,6 @@ class UserController extends Controller
 
         $user = User::create($request->all());
 
-        return view('index', compact('user'));
+        return view('profile', compact('user'));
     }
 }

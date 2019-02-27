@@ -14,9 +14,7 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
-    protected $commands = [
-        Commands\UpdateUserExperienceCommand::class,
-    ];
+    protected $commands = [];
 
     /**
      * Define the application's command schedule.
@@ -26,13 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $secondInterval = 3;
 
-        $totalJobs = 60 / $secondInterval;
-
-        for ($i = 0; $i < $totalJobs; $i++) {
-            $schedule->command('update:userexperience', [ '--delay'=> $secondInterval ])->everyMinute();
-        }
     }
 
     /**
